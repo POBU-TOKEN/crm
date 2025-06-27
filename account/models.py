@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from auditlog.registry import auditlog
 
 ACTIVITY_CHOICES = (
     ('call', "Call"),
@@ -38,3 +39,7 @@ class Activity(models.Model):
     def __str__(self) -> str:
         return f"#{self.id} . {self.name}"
 
+
+auditlog.register(Contact)
+auditlog.register(Activity)
+auditlog.register(User)
