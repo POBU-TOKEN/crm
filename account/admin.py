@@ -1,18 +1,18 @@
-from typing import Any
 from django.contrib import admin
 from account.models import User, Contact, Activity
 from .filters import ContactFilter
+from .mixins import SeeLogButtonMixin
 
 
 # Register your models here.
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(SeeLogButtonMixin, admin.ModelAdmin):
     fields = ('username', 'email', 'password')
     list_display = ('username', 'email', 'first_name', 'last_name')
 
 
 @admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
+class ContactAdmin(SeeLogButtonMixin, admin.ModelAdmin):
     fields = ('name', 'surname', 'phone', 'email', 'company')
     list_display = ('name', 'surname', 'phone', 'email', 'company', 'user__username')
     search_fields = ('name', )
@@ -29,7 +29,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 @admin.register(Activity)
-class ActivityAdmin(admin.ModelAdmin):
+class ActivityAdmin(SeeLogButtonMixin, admin.ModelAdmin):
     fields = ('name', 'activity_type', 'description', 'contact')
     list_display = ('name', 'activity_type', 'description', 'contact')
     list_filter = (ContactFilter, 'activity_type', )
