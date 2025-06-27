@@ -41,3 +41,5 @@ class Activity(models.Model):
 
 
 auditlog.register(Contact)
+auditlog.register(Activity)
+auditlog.register(User)
