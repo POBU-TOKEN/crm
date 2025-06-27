@@ -3,9 +3,9 @@
 
 {% block object-tools-items %}
     {{ block.super }}
-    {% if current_model_content_type_id %}
+    {% if model_content_type_id %}
     <li>
-        <a href="{% url 'admin:auditlog_logentry_changelist' %}?content_type__id__exact={{ current_model_content_type_id }}" class="addlink">
+        <a href="{% url 'admin:auditlog_logentry_changelist' %}?content_type__id__exact={{ model_content_type_id }}" class="addlink">
             {% trans "See Logs" %}
         </a>
     </li>
